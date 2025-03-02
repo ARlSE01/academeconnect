@@ -52,14 +52,15 @@ def reg(request):
 
         # Check if email already exists
         if User.objects.filter(email=email).exists():
-            messages.error(request, "Email already registered!")
-            return redirect("../registration")
+            return HttpResponse("Email already registered!")
+            # return redirect("../registration")
 
         # Create user and hash password
         u = User(username=username, email=email, password=make_password(password), tags=tags_str)
         u.save()
 
-        messages.success(request, "Registration successful!")
+        return HttpResponse("Registration successful!")
+        # messages.success(request, "Registration successful!")
         # return redirect("login")  # Redirect to login page after registration
 
     return render(request, "registration.html")
