@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.hashers import make_password
 from .models import *
-from .forms import UserForm
+from .forms import UserForm, PostForm
 
 
 # Create your views here.
@@ -68,5 +68,8 @@ def registration(request):
 
     return render(request, 'registration.html', {'form': form})
 
+def createpost(request):
+        form = PostForm()
+        return render(request, 'createpost.html', {'form': form})
 
 

@@ -1,4 +1,5 @@
 from django import forms
+from .models import *
 
 class UserForm(forms.Form):
     Username = forms.CharField(max_length=200)
@@ -9,3 +10,14 @@ class UserForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         required=True
     )
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
+
