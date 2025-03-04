@@ -9,7 +9,7 @@ class User(models.Model):
     likes = models.PositiveIntegerField(default=0)  # Positive number for likes
     dislikes = models.PositiveIntegerField(default=0)  # Positive number for dislikes
     blocked = models.ManyToManyField("self",symmetrical=False, blank=True, related_name="blocked_by")  
-    tags = models.CharField(max_length=255, blank=False, null=False, default="HTML") 
+    # tags = models.CharField(max_length=255, blank=False, null=False, default="HTML")
     # ManyToManyField allows users to block multiple users
 
     class Meta:
@@ -34,4 +34,22 @@ class Comment(models.Model):
 
     class Meta:
         db_table='Comments'
+
+
+class Tags(models.Model):
+    TAG_CHOICES = [
+        ('HTML', 'HTML'),
+        ('CSS', 'CSS'),
+        ('JS', 'JavaScript'),
+        ('Python', 'Python'),
+        ('Django', 'Django'),
+    ]
+    name = models.CharField(max_length=50, unique=True, choices=TAG_CHOICES)
+    users = models.ManyToManyField(User, related_name='tags', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = "tags"  # Explicit table name (optional)
 

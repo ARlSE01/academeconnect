@@ -8,6 +8,7 @@
 <form method="POST" >
   {% csrf_token %}
     {{ form }}
+    {{ tags.as_p }}
   <button type="submit">Submit</button>
 </form>
 </body>
