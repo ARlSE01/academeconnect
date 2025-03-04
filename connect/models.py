@@ -1,8 +1,9 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 # Create your models here.
-class User(models.Model):
+class User(AbstractUser):
     username = models.CharField(max_length=150, unique=True, blank=False, null=False)  # Unique username
     email = models.EmailField(unique=True, blank=False, null=False)  # Required and unique email
     password = models.CharField(max_length=255, blank=False, null=False)  # Ensuring non-null password
