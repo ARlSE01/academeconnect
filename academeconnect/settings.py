@@ -59,6 +59,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'academeconnect.urls'
+LOGIN_REDIRECT_URL = '/'  # Redirect to homepage after login
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirect to login after logout
+AUTH_USER_MODEL = 'connect.User'  # Replace 'your_app_name' with your actual app name
+
 
 TEMPLATES = [
     {
