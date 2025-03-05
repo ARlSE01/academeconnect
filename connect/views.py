@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.hashers import make_password
 from .models import *
-from .forms import UserForm, PostForm
+from .forms import UserForm, PostForm, TagForm
 
 
 # Create your views here.
@@ -52,21 +52,23 @@ def registration(request):
             username = form.cleaned_data['Username']
             email = form.cleaned_data['Email']
             password = form.cleaned_data['Password']
-            tags = ', '.join(form.cleaned_data['Tags'])  # Convert selected tags to a string
+            # tags = ', '.join(form.cleaned_data['Tags'])  # Convert selected tags to a string
 
             # Hash the password for security
             hashed_password = make_password(password)
 
             # Create and save the user
-            user = User(username=username, email=email, password=hashed_password, tags=tags)
+            user = User(username=username, email=email, password=hashed_password)
+            # user = User(username=username, email=email, password=hashed_password, tags=tags)
             user.save()
 
             return HttpResponse('DONE GOOD JOB')
 
     else:
         form = UserForm()
+        TAGS = TagForm()
 
-    return render(request, 'registration.html', {'form': form})
+    return render(request, 'registration.html', {'form': form , 'tags': TAGS})
 
 def createpost(request):
         form = PostForm()
