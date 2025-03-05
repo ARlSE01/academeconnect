@@ -54,3 +54,4 @@ class Tags(models.Model):
     class Meta:
         db_table = "tags"  # Explicit table name (optional)
 
+

@@ -11,15 +11,15 @@ class UserForm(forms.Form):
     #     required=True
     # )
 
-class TagForm(forms.ModelForm):
-    # tags = forms.ModelMultipleChoiceField(
-    #     queryset=Tags.objects.all(),  # Empty initially
-    #     widget=forms.CheckboxSelectMultiple(),
-    #     required=False
-    # )
-    class Meta:
-        model = Tags
-        fields = ['name']
+class TagForm(forms.Form):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tags.objects.all(),  # Empty initially
+        widget=forms.CheckboxSelectMultiple(),
+        required=False
+    )
+    # class Meta:
+    #     model = Tags
+    #     fields = ['name']
 
 class PostForm(forms.ModelForm):
     class Meta:
