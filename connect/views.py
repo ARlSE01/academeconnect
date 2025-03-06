@@ -88,33 +88,116 @@ def post_detail(request, post_id):
 @login_required
 def post_like(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    post.likes+=1
+    tracker, created = Liketrack.objects.get_or_create(user=request.user, postid=post)
+    if not created:
+        if tracker.likes:
+            post.likes -= 1
+            tracker.likes = False
+        else:
+            if tracker.dislikes:
+                post.dislikes -= 1
+                tracker.dislikes = False
+            post.likes += 1
+            tracker.likes = True
+        tracker.save()
+    else:
+        # First-time like
+        post.likes += 1
+        tracker.likes = True
+        tracker.save()
+
     post.save()
     post.author.update_likes_dislikes()
     return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
 
 @login_required
 def post_dislike(request, post_id):
+    # post = get_object_or_404(Post, id=post_id)
+    # post.dislikes+=1
+    # post.save()
+    # post.author.update_likes_dislikes()
+    # return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
     post = get_object_or_404(Post, id=post_id)
-    post.dislikes+=1
+    tracker, created = Liketrack.objects.get_or_create(user=request.user, postid=post)
+    if not created:
+        if tracker.dislikes:
+            post.dislikes -= 1
+            tracker.dislikes = False
+        else:
+            if tracker.likes:
+                post.likes -= 1
+                tracker.likes = False
+            post.dislikes += 1
+            tracker.dislikes = True
+        tracker.save()
+    else:
+        # First-time like
+        post.dislikes += 1
+        tracker.dislikes = True
+        tracker.save()
+
     post.save()
     post.author.update_likes_dislikes()
     return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
+
 
 @login_required
 def comment_like(request, comment_id):
     post = get_object_or_404(Comment, id=comment_id)
-    post.likes+=1
+    tracker, created = Liketrack.objects.get_or_create(user=request.user, commentid=post)
+    if not created:
+        if tracker.likes:
+            post.likes -= 1
+            tracker.likes = False
+        else:
+            if tracker.dislikes:
+                post.dislikes -= 1
+                tracker.dislikes = False
+            post.likes += 1
+            tracker.likes = True
+        tracker.save()
+    else:
+        # First-time like
+        post.likes += 1
+        tracker.likes = True
+        tracker.save()
+
     post.save()
     post.author.update_likes_dislikes()
     return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
+    # post.likes+=1
+    # post.save()
+    # post.author.update_likes_dislikes()
+    # return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
 
 @login_required
 def comment_dislike(request, comment_id):
     post = get_object_or_404(Comment, id=comment_id)
-    post.dislikes+=1
+    tracker, created = Liketrack.objects.get_or_create(user=request.user, commentid=post)
+    if not created:
+        if tracker.dislikes:
+            post.dislikes -= 1
+            tracker.dislikes = False
+        else:
+            if tracker.likes:
+                post.likes -= 1
+                tracker.likes = False
+            post.dislikes += 1
+            tracker.dislikes = True
+        tracker.save()
+    else:
+        # First-time like
+        post.dislikes += 1
+        tracker.dislikes = True
+        tracker.save()
+
     post.save()
     post.author.update_likes_dislikes()
     return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
+
+    # post.dislikes+=1
+    # post.save()
+    # post.author.update_likes_dislikes()
+    # return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
 
 

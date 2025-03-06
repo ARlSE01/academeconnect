@@ -1,5 +1,5 @@
 <li>
-    <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
+    <p><strong>{{ comment.author.random_username }}</strong>: {{ comment.content }}</p>
 
     <!-- Like & Dislike buttons for comment -->
     <button class="comment-like-btn" data-post="{{ comment.id }}">👍 Like (<span id="likes-count-{{ comment.id }}">{{ comment.likes }}</span>)</button>

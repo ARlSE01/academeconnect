@@ -8,7 +8,7 @@
 {% for post in posts %}
 <h3>{{ post.title }}</h3><br>
 <p>{{ post.content }}</p><br>
-<p>{{ post.author }}</p>
+<p>{{ post.author.random_username }}</p>
 <p>{{ post.created_at }}</p>
 {% endfor %}
 </body>
