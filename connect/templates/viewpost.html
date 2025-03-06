@@ -1,15 +1,45 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>viewposts</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--{% for post in posts %}-->
+<!--<h3>{{ post.title }}</h3><br>-->
+<!--<p>{{ post.content }}</p><br>-->
+<!--<p>{{ post.author }}</p>-->
+<!--<p>{{ post.created_at }}</p>-->
+<!--{% endfor %}-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>viewposts</title>
+    <title>View Posts</title>
 </head>
 <body>
-{% for post in posts %}
-<h3>{{ post.title }}</h3><br>
-<p>{{ post.content }}</p><br>
-<p>{{ post.author }}</p>
-<p>{{ post.created_at }}</p>
-{% endfor %}
+    {% for post in posts %}
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+        <p>By: {{ post.author }}</p>
+        <p>Created At: {{ post.created_at }}</p>
+
+        {% if request.user == post.author %}
+            <!-- Edit button -->
+            <a href="{% url 'edit_post' post.id %}"><button>Edit</button></a>
+
+            <!-- Delete button with confirmation -->
+            <form action="{% url 'delete_post' post.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                {% csrf_token %}
+<!--                <input type="hidden" name="_method" value="DELETE">-->
+                <button type="submit">Delete</button>
+            </form>
+        {% endif %}
+
+        <hr>
+    {% endfor %}
 </body>
 </html>
