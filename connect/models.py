@@ -1,8 +1,15 @@
+import string
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+import random
 
 
 # Create your models here.
+def generate_random_username():
+    return "User" + ''.join(random.choices(string.digits, k=4))
+
+
 class User(AbstractUser):
     username = models.CharField(max_length=150, unique=True, blank=False, null=False)  # Unique username
     email = models.EmailField(unique=True, blank=False, null=False)  # Required and unique email
@@ -10,6 +17,7 @@ class User(AbstractUser):
     likes = models.PositiveIntegerField(default=0)  # Positive number for likes
     dislikes = models.PositiveIntegerField(default=0)  # Positive number for dislikes
     blocked = models.ManyToManyField("self",symmetrical=False, blank=True, related_name="blocked_by")
+    random_username = models.CharField(max_length=150, blank=False, null=False, default=generate_random_username)
 
     def update_likes_dislikes(self):
         """Update the user's total likes and dislikes based on their posts/comments."""
@@ -65,4 +73,12 @@ class Tags(models.Model):
     class Meta:
         db_table = "tags"  # Explicit table name (optional)
 
+class Liketrack(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liketracksuser")
+    postid = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="liketrackpostid",null=True)
+    commentid = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="liketrackcommentid",null=True)
+    likes = models.BooleanField(default=False)
+    dislikes = models.BooleanField(default=False)
 
+    class Meta:
+        db_table = "liketrack"
