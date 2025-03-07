@@ -9,7 +9,7 @@
     {% for post in posts %}
         <h3>{{ post.title }}</h3>
         <p>{{ post.content }}</p>
-        <p>By: {{ post.author }}</p>
+        <p>By: {{ post.author.random_username }}</p>
         <p>Created At: {{ post.created_at }}</p>
 
         {% if request.user == post.author %}

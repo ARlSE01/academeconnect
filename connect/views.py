@@ -78,53 +78,6 @@ def add_comment(request, post_id):
     return redirect("post_detail", post_id=post.id)
 
 
-# def post_detail(request, post_id):
-#     post = get_object_or_404(Post, id=post_id)
-#     comments = Comment.objects.filter(post=post)
-#     form = CommentForm()
-#
-#     return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})
-
-
-# @login_required
-# def post_detail(request, post_id):
-#     post = get_object_or_404(Post, id=post_id)
-#     comments = Comment.objects.filter(post=post)
-#     form = CommentForm()
-#     post_form = PostForm(instance=post)  # Ensure post_form is always defined
-#
-#     if request.method == "POST":
-#         if "_method" in request.POST and request.POST["_method"] == "DELETE":
-#             if request.user == post.author:
-#                 post.delete()
-#                 return JsonResponse({"message": "Post deleted successfully"}, status=204)
-#             else:
-#                 return JsonResponse({"error": "Unauthorized"}, status=403)
-#         elif "comment" in request.POST:
-#             form = CommentForm(request.POST)
-#             if form.is_valid():
-#                 comment = form.save(commit=False)
-#                 comment.post = post
-#                 comment.author = request.user
-#                 comment.save()
-#                 return redirect('post_detail', post_id=post.id)
-#         else:
-#             post_form = PostForm(request.POST, instance=post)
-#             if post_form.is_valid():
-#                 if request.user == post.author:
-#                     post_form.save()
-#                     return redirect('post_detail', post_id=post.id)
-#                 else:
-#                     return JsonResponse({"error": "Unauthorized"}, status=403)
-#
-#     return render(request, 'post_detail.html', {
-#         'post': post,
-#         'comments': comments,
-#         'form': form,
-#         'post_form': post_form  # Ensuring post_form is always passed to the template
-#     })
-
-
 @login_required
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
