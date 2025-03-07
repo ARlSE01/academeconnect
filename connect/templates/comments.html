@@ -1,0 +1,24 @@
+<li>
+    <p><strong>{{ comment.author.random_username }}</strong>: {{ comment.content }}</p>
+
+    <!-- Like & Dislike buttons for comment -->
+    <button class="comment-like-btn" data-post="{{ comment.id }}">👍 Like (<span id="likes-count-{{ comment.id }}">{{ comment.likes }}</span>)</button>
+    <button class="comment-dislike-btn" data-post="{{ comment.id }}">👎 Dislike (<span id="dislikes-count-{{ comment.id }}">{{ comment.dislikes }}</span>)</button>
+
+    <!-- Reply Form -->
+    <form method="POST" action="{% url 'add_comment' comment.post.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+        <textarea name="content" placeholder="Reply to this comment"></textarea>
+        <button type="submit">Reply</button>
+    </form>
+
+    <!-- Render Replies Recursively -->
+    <ul>
+        {% for reply in comments %}
+            {% if reply.parent == comment %}
+                {% include "comments.html" with comment=reply comments=comments %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+</li>
