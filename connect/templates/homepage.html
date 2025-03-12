@@ -1,10 +1,12 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% tailwind_css %}
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body class="bg-green-50">
 <h1>home</h1>
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
