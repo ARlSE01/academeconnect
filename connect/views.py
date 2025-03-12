@@ -119,7 +119,8 @@ def delete_post(request, post_id):
         return JsonResponse({"error": "Unauthorized"}, status=403)
 
     post.delete()
-    return JsonResponse({"message": "Post deleted successfully"}, status=204)
+    return redirect('viewposts')
+    # return JsonResponse({"message": "Post deleted successfully"}, status=204)
 
 
 @login_required

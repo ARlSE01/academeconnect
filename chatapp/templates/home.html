@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1>home</h1>
+<h1>Home</h1>
 <form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
+    {% csrf_token %} #csrf_token is very important to have as this is POST request
     <button type="submit">Logout</button>
 </form>
 </body>
