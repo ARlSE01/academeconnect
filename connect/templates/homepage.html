@@ -2,15 +2,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% tailwind_css %}
     <meta charset="UTF-8">
     <title>Title</title>
+    {% tailwind_css %}
 </head>
-<body class="bg-green-50">
-<h1>home</h1>
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-</form>
+<body class="bg-[url('/static/uploads/newbg.jpg')] bg-no-repeat bg-cover">
+
+<!-- Navbar -->
+<nav class="bg-white mt-2 p-3 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+
+        <!-- Left Section (Links) -->
+        <div class="flex space-x-6">
+            <h1 class="font-poppins text-gray-800 cursor-pointer hover:text-blue-500 text-2xl">Home</h1>
+            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-2xl">Posts</h1>
+            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-2xl">About Us</h1>
+        </div>
+
+        <!-- Right Section (Buttons) -->
+        <div class="flex space-x-6">
+            <form action="registration" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg hover:opacity-90 transition">
+                    Sign Up
+                </button>
+            </form>
+
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg hover:opacity-90 transition">
+                    Sign In
+                </button>
+            </form>
+        </div>
+
+    </div>
+</nav>
+
 </body>
 </html>
