@@ -9,6 +9,10 @@ import random
 def generate_random_username():
     return "User" + ''.join(random.choices(string.digits, k=4))
 
+def user_profile_picture_path():
+    # Store profile pictures in 'profile_pics/user_<id>/<filename>'
+    var=random.randint(0,2)
+    return f'static/uploads/propic_{var}.jpg'
 
 class User(AbstractUser):
     username = models.CharField(max_length=150, unique=True, blank=False, null=False)  # Unique username
@@ -18,6 +22,9 @@ class User(AbstractUser):
     dislikes = models.PositiveIntegerField(default=0)  # Positive number for dislikes
     blocked = models.ManyToManyField("self",symmetrical=False, blank=True, related_name="blocked_by")
     random_username = models.CharField(max_length=150, blank=False, null=False, default=generate_random_username)
+
+    profile_picture = models.ImageField(upload_to=user_profile_picture_path, blank=True, null=True,default=user_profile_picture_path)
+
 
     def update_likes_dislikes(self):
         """Update the user's total likes and dislikes based on their posts/comments."""

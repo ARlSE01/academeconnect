@@ -55,6 +55,7 @@ def createpost(request):
                 form = PostForm()
                 return render(request, 'createpost.html', {'form': form})
 
+@login_required
 def viewposts(request):
     posts= Post.objects.all()
     return render(request, 'viewpost.html', {'posts': posts})
