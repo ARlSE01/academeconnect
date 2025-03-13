@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 def homepage(request):
     return render(request, 'homepage.html')
 
+
 def registration(request):
     if request.method == "POST":
         form = UserForm(request.POST)
