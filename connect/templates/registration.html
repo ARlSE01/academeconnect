@@ -1,15 +1,63 @@
+
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcademeConnect Signup</title>
+    {% tailwind_css %}
 </head>
-<body>
-<form method="POST" >
-  {% csrf_token %}
-    {{ form }}
-    {{ tags.as_p }}
-  <button type="submit">Submit</button>
-</form>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-teal-900 to-gray-900">
+    <div class="p-12 bg-white/10 backdrop-blur-lg rounded-lg shadow-lg max-w-2xl w-full text-white">
+        <h2 class="text-3xl font-bold text-center mb-6">Welcome to <span class="underline">AcademeConnect</span></h2>
+
+        <form method="POST" class="grid grid-cols-2 gap-6">
+            {% csrf_token %}
+
+            <!-- Left Section: Input Fields -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-lg font-medium">Email</label>
+                    {{ form.Email }}
+                </div>
+
+                <div>
+                    <label class="block text-lg font-medium">Username</label>
+                    {{ form.Username }}
+                </div>
+
+                <div>
+                    <label class="block text-lg font-medium">Password</label>
+                    {{ form.Password}}
+                </div>
+            </div>
+
+            <!-- Right Section: Skills -->
+            <div class="bg-white/10 backdrop-blur-lg p-6 rounded-lg shadow-md h-fit">
+                <label class="block text-lg font-medium text-white mb-3">Skills</label>
+                <div class="space-y-3 text-white">
+                    {{ tags }}
+                </div>
+            </div>
+
+            <!-- Full-Width Section Below -->
+            <div class="col-span-2">
+                <p class="text-sm text-gray-300 text-center">
+                    By creating an account, you agree to the
+                    <a href="#" class="text-teal-400">Terms of use</a> and
+                    <a href="#" class="text-teal-400">Privacy Policy</a>.
+                </p>
+
+                <button class="w-full bg-teal-500 hover:bg-teal-600 transition p-4 rounded-lg shadow-lg mt-6 text-lg">
+                    Create an account
+                </button>
+
+                <p class="text-center text-md mt-4">
+                    Already have an account? <a href="login" class="text-teal-400">Log in</a>
+                </p>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

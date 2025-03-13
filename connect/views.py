@@ -34,7 +34,7 @@ def registration(request):
             user.tags.set(tags)
 
 
-            return HttpResponse('DONE GOOD JOB')
+            return redirect('../login')
 
     else:
         form = UserForm()
