@@ -4,34 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     {% tailwind_css %}
 </head>
-<body class="bg-[url('/static/uploads/newbg.jpg')] bg-no-repeat bg-cover">
+<body class="bg-[url('/static/uploads/classroom.jpg')] bg-no-repeat h-screen bg-cover font-poppins">
 
 <!-- Navbar -->
-<nav class="bg-white mt-3 p-2 shadow-md">
+<nav class="bg-white mt-5 p-2 shadow-md ">
     <div class="max-w-full mx-12 flex justify-between items-start">
 
         <!-- Left Section (Links) -->
-        <div class="flex space-x-6">
-            <h1 class="font-poppins text-gray-800 cursor-pointer hover:text-blue-500 text-3xl">Home</h1>
-            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-3xl">Posts</h1>
-            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-3xl">About Us</h1>
+        <div class="flex space-x-12 hover:scale-105 transition-all duration-300 ease-in-out ml-7 ">
+            <h1 class="font-poppins text-gray-800 cursor-pointer text-3xl font-semibold hover:text-blue-500 hover:scale-110 duration-500 ">AcademeConnect</h1>
+            <h1 class="font-poppins text-gray-500 cursor-pointer text-3xl hover:text-blue-500 hover:scale-110 duration-500 ">Home</h1>
+            <h1 class="font-poppins text-gray-500 cursor-pointer hover:scale-110 hover:text-blue-500 transition-all duration-500 text-3xl">Posts</h1>
+            <h1 class="font-poppins text-gray-500 cursor-pointer hover:scale-110 hover:text-blue-500 transition-all duration-500 text-3xl">About Us</h1>
         </div>
 
         <!-- Right Section (Buttons) -->
-        <div class="flex space-x-6 font-bold ">
+        <div class="flex space-x-10 hover:scale-105 transition-all duration-300 ease-in-out   ">
             <form action="registration" method="get">
                 {% csrf_token %}
-                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg border-2 border-double border-green-200
-               hover:opacity-90 transition">
+                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-8 py-2 rounded-lg
+               hover:opacity-90 hover:scale-110 transition-all duration-500 ease-in-out hover:text-gray-100">
                     Sign Up
                 </button>
             </form>
 
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg border-2 border-double border-green-200 hover:opacity-90 transition">
+                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-8 py-2 rounded-lg  hover:opacity-90 hover:scale-110 transition-all duration-500 ease-in-out hover:text-gray-100">
                     Sign In
                 </button>
             </form>
@@ -40,9 +44,9 @@
     </div>
 </nav>
 
-<div class="flex flex-col items-left p-4 justify-start mt-10 ml-7">
-    <h1 class="flex max-w-10 text-7xl font-bold text-white">Say hello to AcademeConnect</h1>
-    <p class="flex max-w-[60vw] pt-4 text-5xl text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus nunc, ac rhoncus odio congue quis. Sed ac semper orci, eu porttitor lacus. </p>
+<div class="flex flex-col items-left p-12 h-3/4 space-y-6 justify-center ">
+    <h1 class="flex max-w-[50vw] text-5xl font-poppins font-semibold text-white">Say hello to AcademeConnect</h1>
+    <p class="flex max-w-[70vw] pt-4 text-4xl text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus nunc, ac rhoncus odio congue quis. Sed ac semper orci, eu porttitor lacus. </p>
     <form action="registration" method="get">
                 {% csrf_token %}
 <!--                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-10 py-3 rounded-full mt-[3vw] border-2 border-double border-green-200-->
@@ -52,8 +56,8 @@
         <button type="submit"
     class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-10 py-3 rounded-full mt-[3vw]
            border-2 border-double border-teal-400 hover:border-teal-300
-           hover:bg-opacity-90 hover:scale-105 hover:text-black transition-all duration-300
-           font-bold text-xl shadow-lg">
+           hover:bg-opacity-90 hover:scale-105 hover:text-gray-100 transition-all duration-300
+            text-xl shadow-lg">
     Sign Up for Free
        </button>
 
