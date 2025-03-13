@@ -9,28 +9,29 @@
 <body class="bg-[url('/static/uploads/newbg.jpg')] bg-no-repeat bg-cover">
 
 <!-- Navbar -->
-<nav class="bg-white mt-2 p-3 shadow-md">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
+<nav class="bg-white mt-3 p-2 shadow-md">
+    <div class="max-w-full mx-12 flex justify-between items-start">
 
         <!-- Left Section (Links) -->
         <div class="flex space-x-6">
-            <h1 class="font-poppins text-gray-800 cursor-pointer hover:text-blue-500 text-2xl">Home</h1>
-            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-2xl">Posts</h1>
-            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-2xl">About Us</h1>
+            <h1 class="font-poppins text-gray-800 cursor-pointer hover:text-blue-500 text-3xl">Home</h1>
+            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-3xl">Posts</h1>
+            <h1 class="font-poppins text-gray-500 cursor-pointer hover:text-blue-500 text-3xl">About Us</h1>
         </div>
 
         <!-- Right Section (Buttons) -->
-        <div class="flex space-x-6">
+        <div class="flex space-x-6 font-bold ">
             <form action="registration" method="get">
                 {% csrf_token %}
-                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg hover:opacity-90 transition">
+                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg border-2 border-double border-green-200
+               hover:opacity-90 transition">
                     Sign Up
                 </button>
             </form>
 
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg hover:opacity-90 transition">
+                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-4 py-2 rounded-lg border-2 border-double border-green-200 hover:opacity-90 transition">
                     Sign In
                 </button>
             </form>
@@ -38,6 +39,26 @@
 
     </div>
 </nav>
+
+<div class="flex flex-col items-left p-4 justify-start mt-10 ml-7">
+    <h1 class="flex max-w-10 text-7xl font-bold text-white">Say hello to AcademeConnect</h1>
+    <p class="flex max-w-[60vw] pt-4 text-5xl text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis maximus nunc, ac rhoncus odio congue quis. Sed ac semper orci, eu porttitor lacus. </p>
+    <form action="registration" method="get">
+                {% csrf_token %}
+<!--                <button type="submit" class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-10 py-3 rounded-full mt-[3vw] border-2 border-double border-green-200-->
+<!--                hover:text-black opacity-90 transition  font-bold text-xl">-->
+<!--                    Sign Up for Free-->
+<!--                </button>-->
+        <button type="submit"
+    class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-10 py-3 rounded-full mt-[3vw]
+           border-2 border-double border-teal-400 hover:border-teal-300
+           hover:bg-opacity-90 hover:scale-105 hover:text-black transition-all duration-300
+           font-bold text-xl shadow-lg">
+    Sign Up for Free
+       </button>
+
+            </form>
+</div>
 
 </body>
 </html>
