@@ -1,0 +1,91 @@
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% block forjs %}
+    {% endblock %}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    {% tailwind_css %}
+    <style>
+/* Hide Scrollbar Completely */
+::-webkit-scrollbar {
+    width: 0px; /* No scrollbar */
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Invisible thumb */
+}
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Invisible track */
+}
+* {
+    scrollbar-width: none; /* Firefox scrollbar hidden */
+    overflow-x: hidden; /* No horizontal scrolling */
+}
+
+@keyframes appear {
+    from{
+    opacity: 0;
+    scale: 0.8;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.block {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 20% ;
+}
+</style>
+</head>
+<body class="bg-[url('/static/uploads/everybg.png')] bg-cover min-h-screen flex justify-center items-center p-6">
+<div class="flex flex-col w-[90vw] items-center space-y-8">
+<h1 class="text-3xl font-poppins font-semibold text-gray-100 underline">AcademeConnect</h1>
+    <div class="flex w-full max-w-[70vw] bg-white/10 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden">
+        <!-- Sidebar -->
+        <div class="w-1/4 bg-gray-300/80 p-6 flex flex-col items-center text-[#006784]">
+            <div class="w-24 h-24 bg-gray-300 rounded-full overflow-hidden ">
+                <img src=" /{{user.profile_picture}} " alt="User" class="w-full h-full object-cover">
+            </div>
+            <h2 class="mt-4  font-semibold text-lg">{{user.username}}</h2>
+            <p class="text-sm">{{user.random_username}}</p>
+            <nav class="mt-6  space-y-4  w-full text-lg font-poppins">
+                <a href="../viewposts" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                    <span class="text-xl">⭐</span>
+                    <span>My Activity</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                    <span class="text-xl">▶</span>
+                    <span>All Posts</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                    <span class="text-xl">❤️</span>
+                    <span>Connect</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                    <span class="text-xl">👤</span>
+                    <span>Account</span>
+                </a>
+            </nav>
+            <form action="../logout/" method="post" class="transition-all hover:scale-105 duration-300 ease-in-out">
+                {% csrf_token %}
+            <button class="mt-6 bg-gradient-to-r from-blue-400 to-teal-500 text-white px-6 py-2 rounded-lg w-full shadow-md hover:opacity-80 ">LOGOUT</button>
+            </form>
+        </div>
+
+{% block content %}
+        <!-- Main Content -->
+      {% endblock %}
+    </div>
+</div>
+</body>
+</html>

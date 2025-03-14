@@ -42,4 +42,11 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={
+                'class': 'w-full p-2 bg-gray-300 text-white rounded-lg',
+                'rows': 1,
+                'placeholder': 'Write your comment...',
+            }),
+        }
 
