@@ -2,9 +2,6 @@ from django import forms
 from .models import *
 
 class UserForm(forms.Form):
-    # Username = forms.CharField(max_length=200)
-    # Email = forms.EmailField(max_length=50)
-    # Password = forms.CharField(widget=forms.PasswordInput())
     Email = forms.EmailField(widget=forms.EmailInput(attrs={
         'class': 'w-full p-3 rounded-lg bg-white/20 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
     }))
@@ -14,11 +11,7 @@ class UserForm(forms.Form):
     Password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'w-full p-3 rounded-lg bg-white/20 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
     }))
-    # Tags = forms.MultipleChoiceField(
-    #     choices=[('html', 'HTML'), ('css', 'CSS'), ('javascript', 'JavaScript')],
-    #     widget=forms.CheckboxSelectMultiple,
-    #     required=True
-    # )
+
 
 class TagForm(forms.Form):
     tags = forms.ModelMultipleChoiceField(
@@ -34,6 +27,16 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'w-full p-7 rounded-lg bg-white/100 text-black placeholder:text-white shadow-md focus:ring-2 focus:ring-teal-400 outline-none h-12',
+                'placeholder': 'Enter title'
+            }),
+            'content': forms.Textarea(attrs={
+                'class': 'w-full p-7 rounded-lg bg-white/100 text-black placeholder:text-white shadow-md focus:ring focus:ring-teal-400 outline-none h-30',
+                'placeholder': 'Enter content'
+            }),
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:

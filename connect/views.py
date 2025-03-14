@@ -46,14 +46,17 @@ def registration(request):
 def createpost(request):
         if request.method=='POST':
             form = PostForm(request.POST)
+            tag_form = TagForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=False)
                 post.author = request.user
                 post.save()
-                return redirect('../createpost')
+                form.save_m2m()
+                return redirect('../viewposts')
         else:
                 form = PostForm()
-                return render(request, 'createpost.html', {'form': form})
+                tag_form = TagForm()
+                return render(request, 'createpost.html', {'form': form, 'tag_form': tag_form})
 
 @login_required
 def viewposts(request):

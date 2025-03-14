@@ -69,7 +69,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'academeconnect.urls'
 LOGIN_REDIRECT_URL = '/viewposts'  # Redirect to homepage after login
-LOGOUT_REDIRECT_URL = '/'  # Redirect to login after logout
+LOGOUT_REDIRECT_URL = '/'  # Redirect to login after logout  # Redirect to homepage after login
+LOGOUT_REDIRECT_URL = '../login/'  # Redirect to login after logout
 AUTH_USER_MODEL = 'connect.User'  # Replace 'your_app_name' with your actual app name
 
 
