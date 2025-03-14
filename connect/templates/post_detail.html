@@ -1,35 +1,53 @@
+{% extends 'nav.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Post Details</title>
-    <script src="{% static 'likesdislikes.js' %}"></script>
-</head>
-<body>
 
-<h2>{{ post.title }}</h2>
-<p>{{ post.content }}</p>
+{% block forjs %}
+<script src="{% static 'likesdislikes.js' %}"></script>
+{% endblock %}
 
-<!-- Like & Dislike buttons for post -->
-<button class="like-btn" data-post="{{ post.id }}">👍 Like (<span id="likes-count-{{ post.id }}">{{ post.likes }}</span>)</button>
-<button class="dislike-btn" data-post="{{ post.id }}">👎 Dislike (<span id="dislikes-count-{{ post.id }}">{{ post.dislikes }}</span>)</button>
+{% block content %}
+<div class="flex flex-col w-full">
+    <div class="w-full bg-white/50 rounded-xl p-4 shadow-xl ">
+        <div class="flex w-full items-center justify-start flex-wrap ">
+            <img src="{{ post.author.profile_picture.url }}" class="w-16 h-16 mt-2 rounded-full">
+            <div class="flex flex-col justify-center p-2 ml-2 items-center">
+                <h2 class="font-poppins font-semibold text-2xl text-black text-left">{{ post.title }}</h2>
+                <p class="font-poppins font-medium text-black text-left">{{ post.content }}</p>
+            </div>
+        </div>
 
-<h3>Comments</h3>
-<ul>
-    {% for comment in comments %}
-        {% if not comment.parent %}
-            {% include "comments.html" with comment=comment comments=comments %}
-        {% endif %}
-    {% endfor %}
-</ul>
+        <!-- Like & Dislike buttons for post -->
+        <div class="flex w-full justify-end space-x-4 items-center">
+            <button class="like-btn" data-post="{{ post.id }}">
+                <img src="{% static 'uploads/like.png' %}" class="h-5 w-5  mx-1">
+                (<span id="likes-count-{{ post.id }}">{{ post.likes }}</span>)
+            </button>
+            <button class="dislike-btn" data-post="{{ post.id }}">
+                <img src="{% static 'uploads/dislike.png' %}" class="h-5 w-5  mx-1">
+                (<span id="dislikes-count-{{ post.id }}">{{ post.dislikes }}</span>)
+            </button>
+        </div>
+    </div>
 
-<h3>Add a Comment</h3>
-<form method="POST" action="{% url 'add_comment' post.id %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+    <h3 class="text-white">Comments</h3>
+    <div class="mt-4 h-96 overflow-y-auto space-y-4 pr-2 ">
+    <ul>
+        {% for comment in comments %}
+            {% if not comment.parent %}
+                <div class="w-full rounded-xl p-4 shadow-xl bg-white/40 space-y-2 ">
+                    {% include "comments.html" with comment=comment comments=comments %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    </div>
 
-</body>
-</html>
+    <h3>Add a Comment</h3>
+    <form method="POST" action="{% url 'add_comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="mt-2 px-4 py-1 bg-blue-500 text-white rounded-lg">Reply</button>
+    </form>
+</div>
+
+{% endblock %}

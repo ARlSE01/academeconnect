@@ -36,6 +36,7 @@ class User(AbstractUser):
         self.dislikes = postdislikes+commentdislikes
         self.save()
 
+
     class Meta:
         db_table='User'
 
@@ -58,6 +59,14 @@ class Comment(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
+
+    def depth(self):
+        depth = 0
+        parent = self.parent
+        while parent:
+            depth += 1
+            parent = parent.parent
+        return depth
 
     class Meta:
         db_table='Comments'
