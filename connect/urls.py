@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('viewposts', views.viewposts, name='viewposts'),
+    path('post/viewposts', views.viewposts, name='viewposts'),
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),
     path('post/<int:post_id>/comment/', views.add_comment, name='add_comment'),
     path('like/post/<int:post_id>/', views.post_like, name='like_post'),
