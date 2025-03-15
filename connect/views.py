@@ -46,7 +46,6 @@ def registration(request):
 def createpost(request):
         if request.method=='POST':
             form = PostForm(request.POST)
-            tag_form = TagForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=False)
                 post.author = request.user

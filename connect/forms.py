@@ -16,7 +16,9 @@ class UserForm(forms.Form):
 class TagForm(forms.Form):
     tags = forms.ModelMultipleChoiceField(
         queryset=Tags.objects.all(),  # Empty initially
-        widget=forms.CheckboxSelectMultiple(),
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'text-white',  # Style for the checkbox list
+        }),
         required=False
     )
     # class Meta:
@@ -29,11 +31,11 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'content']
         widgets = {
             'title': forms.TextInput(attrs={
-                'class': 'w-full p-7 rounded-lg bg-white/100 text-black placeholder:text-white shadow-md focus:ring-2 focus:ring-teal-400 outline-none h-12',
+                'class': 'w-full p-7 rounded-lg bg-transparent border-2 border-white text-white font-semibold placeholder:text-white shadow-md focus:ring-2 focus:ring-teal-400 outline-none h-12',
                 'placeholder': 'Enter title'
             }),
             'content': forms.Textarea(attrs={
-                'class': 'w-full p-7 rounded-lg bg-white/100 text-black placeholder:text-white shadow-md focus:ring focus:ring-teal-400 outline-none h-30',
+                'class': 'w-full p-7 rounded-lg bg-transparent border-2 border-white text-white font-semibold placeholder:text-white shadow-md focus:ring focus:ring-teal-400 outline-none h-30',
                 'placeholder': 'Enter content'
             }),
         }
