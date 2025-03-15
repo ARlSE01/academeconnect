@@ -16,6 +16,7 @@ urlpatterns = [
     path('dislike/post/<int:post_id>/', views.post_dislike, name='dislike_post'),
     path('like/comment/<int:comment_id>/', views.comment_like, name='like_comment'),
     path('dislike/comment/<int:comment_id>/', views.comment_dislike, name='dislike_comment'),
+    path('myposts/', views.userposts, name='userposts'),  # Show all posts
     path('post/<int:post_id>/edit/', views.edit_post, name='edit_post'),  # Edit a Post
     path('post/<int:post_id>/delete/', views.delete_post, name='delete_post'),  # Delete a Post
 ]

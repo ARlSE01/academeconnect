@@ -52,7 +52,7 @@ def createpost(request):
                 post.author = request.user
                 post.save()
                 form.save_m2m()
-                return redirect('../viewposts')
+                return redirect('../myposts')
         else:
                 form = PostForm()
                 tag_form = TagForm()
@@ -95,6 +95,10 @@ def post_detail(request, post_id):
         'form': form
     })
 
+@login_required
+def userposts(request):
+    posts = Post.objects.filter(author=request.user)  # Get user's posts
+    return render(request, 'myposts.html', {'posts': posts})  # Render all posts
 
 @login_required
 def edit_post(request, post_id):
@@ -108,7 +112,7 @@ def edit_post(request, post_id):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('post_detail', post_id=post.id)
+            return redirect('userposts')
     else:
         form = PostForm(instance=post)
 
@@ -124,7 +128,7 @@ def delete_post(request, post_id):
         return JsonResponse({"error": "Unauthorized"}, status=403)
 
     post.delete()
-    return redirect('viewposts')
+    return redirect('userposts')
     # return JsonResponse({"message": "Post deleted successfully"}, status=204)
 
 
