@@ -1,4 +1,5 @@
 {% extends 'nav.html' %}
+{% load static %}
 
 {% block content %}
 <!-- Main Content -->
@@ -12,17 +13,17 @@
     <!-- Scrollable Parent Container -->
     <div class="mt-6 h-96 overflow-y-auto space-y-2 ">
         {% for post in posts %}
-        <a href="post/{{post.id}}">
+        <a href="../post/{{post.id}}">
             <div class="flex items-center mb-2 bg-white/40 p-4 rounded-lg shadow-md mx-6 w-11/12 transition-all hover:scale-105 duration-300 ease-in-out hover:border-gray-700 block">
                 <div class="w-12 h-12 bg-gray-300 rounded-lg flex items-center justify-center ">
-                    <img src="{{post.author.profile_picture}}" alt="" class="w-10 h-10">
+                    <img src="/{{post.author.profile_picture}}" alt="" class="w-10 h-10">
                 </div>
                 <div class="ml-4 flex-1 w-full">
                     <h3 class="text-lg font-semibold break-words w-full">{{ post.title }}</h3>
                     <p class="text-sm text-gray-300">{{ post.author.random_username }}</p>
                 </div>
-                    <p class="flex text-sm text-white font-bold p-1 mr-1"><img src="static/uploads/like.png" class="h-5 w-5 round-full mx-1">{{ post.likes }}</p>
-                    <p class="flex text-sm text-white font-bold p-1 mr-1"><img src="static/uploads/dislike.png" class="h-5 w-5 round-full mx-1">{{ post.dislikes }}</p>
+                    <p class="flex text-sm text-white font-bold p-1 mr-1"><img src="/static/uploads/like.png" class="h-5 w-5 round-full mx-1">{{ post.likes }}</p>
+                    <p class="flex text-sm text-white font-bold p-1 mr-1"><img src="/static/uploads/dislike.png" class="h-5 w-5 round-full mx-1">{{ post.dislikes }}</p>
                 <span class="text-xl font-bold text-white">{{ post.score }}</span>
             </div>
         </a>
