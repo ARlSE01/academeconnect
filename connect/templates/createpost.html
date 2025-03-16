@@ -1,14 +1,75 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form method="POST">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form }}-->
+<!--    <button type="submit">Submit</button>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    {% tailwind_css %}
 </head>
-<body>
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Submit</button>
-</form>
+
+<body class="bg-[url('/static/uploads/everybg.png')] bg-cover min-h-screen flex justify-center items-center p-6">
+    <div class="p-12 bg-white/20 backdrop-blur-lg rounded-lg shadow-lg max-w-2xl w-full text-white">
+        <h2 class="text-3xl font-bold text-center mb-6"><span class="underline">Create Post</span></h2>
+
+        <form method="POST" class="grid grid-cols-2 gap-6">
+            {% csrf_token %}
+            <div class="space-y-4">
+                {{ form.as_p }}
+
+            </div>
+
+
+            <div class="space-y-2">
+                    <!-- Skills Label (Outside the Box) -->
+            <label class="block text-lg  text-white">Skills:</label>
+
+            <!-- Right Section: Skills Container -->
+                <div class="bg-transparent border-2 border-white p-6 rounded-lg shadow-md h-fit">
+                    <div class="space-y-2 text-black">
+                        {{ tag_form.tags }}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Full-Width Section Below -->
+            <div class="col-span-2">
+                <p class="text-sm text-gray-300 text-center">
+                    Do not post any
+                    <a href="#" class="text-teal-400">personal information</a> or
+                    <a href="#" class="text-teal-400">sensitive content</a>.
+                </p>
+            </div>
+
+            <div class="col-span-2 flex justify-center">
+                <button type="submit"
+                class="bg-gradient-to-r from-[#36D2DD] to-[#153C3D] text-white px-10 py-3 rounded-full mt-[1vw]
+                border-2 border-double border-teal-400 hover:border-teal-300
+                hover:bg-opacity-90 hover:scale-105 hover:text-gray-100 transition-all duration-300
+                text-xl shadow-lg">
+                Post
+            </button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
+

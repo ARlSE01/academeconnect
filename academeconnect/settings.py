@@ -25,15 +25,19 @@ SECRET_KEY = 'django-insecure-h0t^kn46xy#!hi^ad&iyjc9@gn1co7k0vr^54^sh*#fyi^v&f8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok.io','d3fd-103-218-237-74.ngrok-free.app']
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = "/Users/ghosh/.nvm/versions/node/v22.14.0/bin/npm"
+CSRF_TRUSTED_ORIGINS = ['https://*.mydomain.com','https://*.127.0.0.1','https://d3fd-103-218-237-74.ngrok-free.app']
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +48,12 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
+    'chatapp',
+    'channels',
 ]
+
+ASGI_APPLICATION = 'academeconnect.asgi.application'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,8 +68,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'academeconnect.urls'
-LOGIN_REDIRECT_URL = '/'  # Redirect to homepage after login
-LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirect to login after logout
+LOGIN_REDIRECT_URL = '/viewposts'  # Redirect to homepage after login
+ # Redirect to login after logout  # Redirect to homepage after login
+LOGOUT_REDIRECT_URL = '../login/'  # Redirect to login after logout
 AUTH_USER_MODEL = 'connect.User'  # Replace 'your_app_name' with your actual app name
 
 
@@ -81,6 +91,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'academeconnect.wsgi.application'
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 
 # Database

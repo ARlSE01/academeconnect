@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 def homepage(request):
     return render(request, 'homepage.html')
 
+
 def registration(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -33,7 +34,7 @@ def registration(request):
             user.tags.set(tags)
 
 
-            return HttpResponse('DONE GOOD JOB')
+            return redirect('../login')
 
     else:
         form = UserForm()
@@ -49,11 +50,14 @@ def createpost(request):
                 post = form.save(commit=False)
                 post.author = request.user
                 post.save()
-                return redirect('../createpost')
+                form.save_m2m()
+                return redirect('../myposts')
         else:
                 form = PostForm()
-                return render(request, 'createpost.html', {'form': form})
+                tag_form = TagForm()
+                return render(request, 'createpost.html', {'form': form, 'tag_form': tag_form})
 
+@login_required
 def viewposts(request):
     posts= Post.objects.all()
     return render(request, 'viewpost.html', {'posts': posts})
@@ -78,12 +82,54 @@ def add_comment(request, post_id):
     return redirect("post_detail", post_id=post.id)
 
 
+@login_required
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comments = Comment.objects.filter(post=post)
     form = CommentForm()
 
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})
+    return render(request, 'post_detail.html', {
+        'post': post,
+        'comments': comments,
+        'form': form
+    })
+
+@login_required
+def userposts(request):
+    posts = Post.objects.filter(author=request.user)  # Get user's posts
+    return render(request, 'myposts.html', {'posts': posts})  # Render all posts
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    # Allow only the post author to edit
+    if request.user != post.author:
+        return JsonResponse({"error": "Unauthorized"}, status=403)
+
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('userposts')
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'editpost.html', {'form': form, 'post': post})
+
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    # Allow only the post author to delete
+    if request.user != post.author:
+        return JsonResponse({"error": "Unauthorized"}, status=403)
+
+    post.delete()
+    return redirect('userposts')
+    # return JsonResponse({"message": "Post deleted successfully"}, status=204)
+
 
 @login_required
 def post_like(request, post_id):
