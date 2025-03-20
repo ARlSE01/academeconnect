@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select a Tag</title>
+</head>
+<body>
+    <h1>Select a Tag</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.tags }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
