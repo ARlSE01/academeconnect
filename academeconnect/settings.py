@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'connect',
     'tailwind',
     'theme',
+    'django_htmx',
     'django_browser_reload',
     'chatapp',
     'channels',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 
 ]
 

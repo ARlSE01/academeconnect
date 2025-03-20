@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     if not request.user.is_authenticated:
         return redirect("../login")
-    chat_group=get_object_or_404(ChatGroup)
+    chat_group=get_object_or_404(ChatGroup,group_name="public_group")
+
     chat_messages=chat_group.chat_messages.all()
     if request.htmx:
         form = ChatmessageCreateForm(request.POST)
@@ -26,4 +27,6 @@ def home(request):
 
             }
             return render(request,'chatapp/partials/chat_message_p.html',context)
+    else:
+        form = ChatmessageCreateForm()
     return render(request, 'chat.html',{'chat_messages':chat_messages,'form' : form})
