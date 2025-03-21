@@ -863,6 +863,11 @@ select {
   margin-bottom: 1rem;
 }
 
+.mx-20 {
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -937,6 +942,10 @@ select {
 
 .mt-\[3vw\] {
   margin-top: 3vw;
+}
+
+.mt-\[2vw\] {
+  margin-top: 2vw;
 }
 
 .block {
@@ -1074,6 +1083,10 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-2\/12 {
+  width: 16.666667%;
 }
 
 .max-w-2xl {
@@ -1240,6 +1253,10 @@ select {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-visible {
+  overflow: visible;
 }
 
 .overflow-y-auto {
@@ -1412,6 +1429,15 @@ select {
   background-color: rgb(255 255 255 / 0.8);
 }
 
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+
+.bg-white\/50 {
+  background-color: rgb(255 255 255 / 0.5);
+}
+
 .bg-\[url\(\'\/static\/uploads\/classroom\.jpg\'\)\] {
   background-image: url('/static/uploads/classroom.jpg');
 }
@@ -1470,6 +1496,10 @@ select {
 
 .to-teal-500 {
   --tw-gradient-to: #14b8a6 var(--tw-gradient-to-position);
+}
+
+.to-teal-600 {
+  --tw-gradient-to: #0d9488 var(--tw-gradient-to-position);
 }
 
 .bg-cover {
@@ -1727,6 +1757,10 @@ select {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.text-white\/80 {
+  color: rgb(255 255 255 / 0.8);
 }
 
 .underline {
