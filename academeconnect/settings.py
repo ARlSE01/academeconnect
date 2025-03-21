@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'connect',
     'tailwind',
     'theme',
+    'django_htmx',
     'django_browser_reload',
     'chatapp',
     'channels',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 
 ]
 
@@ -77,7 +79,8 @@ AUTH_USER_MODEL = 'connect.User'  # Replace 'your_app_name' with your actual app
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"connect/templates"),
+                 os.path.join(BASE_DIR,"chatapp/templates"),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
