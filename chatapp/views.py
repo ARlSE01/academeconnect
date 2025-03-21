@@ -70,5 +70,7 @@ def selecttags(request):
         form = TagForm()
     return render(request, 'selecttags.html', {'form': form})
 
-def chatroomslist(request):
-    grouplist=ChatGroup.user
+def user_chatgroups(request):
+    # Fetch groups where the user is a member
+    chatgroups = ChatGroup.objects.filter(members=request.user)
+    return render(request, 'user_chatgroups.html', {'chatgroups': chatgroups})
