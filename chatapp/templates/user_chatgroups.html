@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Your Chat Groups</title>
+</head>
+<body>
+    <h1>Your Chat Groups</h1>
+    {% if chatgroups %}
+        <ul>
+            {% for group in chatgroups %}
+                <li>
+                    {% for member in group.members.all %}
+                    {% if member != request.user %}
+                   <a href="{% url 'start-chat' request.user %}"> {{ member.random_username }} </a>
+
+                    {% endif %}
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not a member of any chat groups.</p>
+    {% endif %}
+</body>
+</html>

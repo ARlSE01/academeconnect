@@ -9,6 +9,7 @@ urlpatterns = [
     path("selecttags", views.selecttags, name="selecttags"),
     path("privatechat/<str:username>", views.get_or_create_chatroom, name="start-chat"),
     path("room/<chatroom_name>", views.home, name="chatroom"),
+    path("user_chatgroups", views.user_chatgroups, name="user_chatgroups"),
 
     # login-section
 ]
