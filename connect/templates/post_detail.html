@@ -64,8 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <form method="POST" action="{% url 'add_comment' post.id %}" class="bg-transparent  rounded-sm shadow-xl text-black">
         {% csrf_token %}
+        <div class="flex justify-start items-center w-full">
         {{ form.as_p }}
+
         <button type="submit" class="mt-2 px-4 py-1 bg-blue-500 text-white rounded-lg">Reply</button>
+        </div>
     </form>
 </div>
 

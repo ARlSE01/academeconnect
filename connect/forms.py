@@ -41,14 +41,16 @@ class PostForm(forms.ModelForm):
         }
 
 class CommentForm(forms.ModelForm):
+    content = forms.CharField(
+        widget=forms.Textarea(attrs={
+            'class': 'w-full p-2 bg-gray-300 text-black rounded-lg',
+            'rows': 1,
+            'placeholder': 'Write your comment...',
+        }),
+        label=''  # No label
+    )
+
     class Meta:
         model = Comment
         fields = ['content']
-        widgets = {
-            'content': forms.Textarea(attrs={
-                'class': 'w-full p-2 bg-gray-300 text-black rounded-lg',
-                'rows': 1,
-                'placeholder': 'Write your comment...',
-            }),
-        }
 
