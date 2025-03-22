@@ -1,26 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Your Chat Groups</title>
-</head>
-<body>
-    <h1>Your Chat Groups</h1>
-    {% if chatgroups %}
-        <ul>
-            {% for group in chatgroups %}
-                <li>
-                    {% for member in group.members.all %}
-                    {% if member != request.user %}
-                   <a href="{% url 'start-chat' request.user %}"> {{ member.random_username }} </a>
+{% extends 'nav.html' %}
 
-                    {% endif %}
+{% block content %}
+<div class="w-11/12 p-6 mt-2">
+        <h2 class="mx-5 text-3xl font-bold text-white mb-4">CHATS</h2>
+        <!-- Correctly structured button inside <a> -->
+
+        <div class="flex justify-end overflow-visible mt-6 mx-20">
+                <button class="w-2/12 p-2 bg-gradient-to-r from-blue-400 to-teal-500
+                               hover:bg-opacity-90 hover:scale-105 hover:text-gray-100
+                               transition-all duration-300 text-white rounded-lg outline-none">
+            <a href="{% url 'selecttags' %}">
+                    Connect 🌐
+            </a>
+                </button>
+        </div>
+         <!-- User List -->
+        <div class="mt-6 h-96 overflow-y-auto space-y-2">
+            {% if chatgroups %}
+                <ul>
+                    {% for group in chatgroups %}
+                        <li>
+                            {% for member in group.members.all %}
+                            {% if member != request.user %}
+                            <div class="flex items-center mb-2 bg-white/50 p-4 rounded-lg shadow-md mx-6 w-11/12 transition-all hover:scale-105 duration-300 ease-in-out hover:border-gray-700 block">
+
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex items-center justify-center ">
+                                    <img src="/{{member.profile_picture}}" alt="" class="w-10 h-10">
+                                </div>
+
+                                <div class="ml-4 flex-1 w-full">
+                                    <h3 class="text-lg font-semibold break-words w-full">{{ member.random_username }}</h3>
+                                </div>
+
+                                <a href="{% url 'start-chat' request.user %}"
+                                   class="bg-gradient-to-r from-blue-400 to-teal-600 text-white px-10 py-3 rounded-full mt-2
+                                    border-2 border-double border-teal-400 hover:border-teal-300
+                                    hover:bg-opacity-90 hover:scale-105 hover:text-gray-100 transition-all duration-300">
+                                    Chat
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </li>
                     {% endfor %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You are not a member of any chat groups.</p>
-    {% endif %}
-</body>
-</html>
+                </ul>
+            {% else %}
+                <p>You are not a member of any chat groups.</p>
+            {% endif %}
+        </div>
+</div>
+{% endblock %}
