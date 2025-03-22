@@ -16,18 +16,16 @@
 
         <!-- Left Section (Image & Illustration) -->
         <div class="w-[65vw] border-r-2  flex flex-col items-end justify-center ">
-
-<!--            <h1 class="text-5xl max-w-md  mr-10 font-semibold text-gray-100  ">Your PRIVACY is our PRIORITY</h1>-->
-<!--            <h1 class="text-3xl max-w-md  mr-10 pt-2 text-gray-100  ">Your details will always stay anonymous </h1>-->
         </div>
 
         <!-- Right Section (Login Form) -->
         <div class="p-10 ml-4  flex flex-col justify-center bg-transparent  rounded-lg shadow-lg overflow-hidden">
             <h2 class="text-4xl font-semibold text-white text-center mb-4 underline">Sign In</h2>
 
-            {% if form.errors %}
+            {% if form.errors and 'username' not in form.errors and 'password' not in form.errors %}
                 <p class="text-red-400 text-center">Invalid username or password.</p>
             {% endif %}
+
 
             <form method="post" class="space-y-4 px-16">
                 {% csrf_token %}

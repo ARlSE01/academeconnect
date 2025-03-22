@@ -63,15 +63,15 @@
                     <span class="text-xl">😎</span>
                     <span>Create Post</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                <a href="{% url 'userposts' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
                     <span class="text-xl">⭐</span>
                     <span>My Activity</span>
                 </a>
-                <a href="../viewposts" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                <a href="{% url 'viewposts' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
                     <span class="text-xl">▶</span>
                     <span>All Posts</span>
                 </a>
-                <a href="../chat/users" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                <a href="{% url 'user_chatgroups' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
                     <span class="text-xl">❤️</span>
                     <span>Chats</span>
                 </a>
