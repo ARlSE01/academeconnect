@@ -56,7 +56,7 @@ def get_or_create_chatroom(request,username):
 
     chatroom = ChatGroup.objects.create(is_private=True)
     chatroom.members.add(other_user, request.user)
-    return redirect('chatroom', chatroom.group_name)
+    return redirect('chatroom', chatroom.group_name,{'other_user':other_user})
 
 
 def selecttags(request):
