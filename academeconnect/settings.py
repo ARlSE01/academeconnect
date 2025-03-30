@@ -30,7 +30,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 TAILWIND_APP_NAME = 'theme'
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = r"/Users/ghosh/.nvm/versions/node/v22.14.0/bin/npm"
 CSRF_TRUSTED_ORIGINS = ['https://*.mydomain.com','https://*.127.0.0.1','https://d3fd-103-218-237-74.ngrok-free.app']
 
 

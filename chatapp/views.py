@@ -73,4 +73,5 @@ def selecttags(request):
 def user_chatgroups(request):
     # Fetch groups where the user is a member
     chatgroups = ChatGroup.objects.filter(members=request.user)
+    print(chatgroups)
     return render(request, 'user_chatgroups.html', {'chatgroups': chatgroups})

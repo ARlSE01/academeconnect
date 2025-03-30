@@ -41,6 +41,7 @@
                 <form id="chat_message_form" class="flex items-center w-full bg-gray-700 rounded-lg px-4 py-2"
                       hx-ext="ws" ws-connect="/ws/chatroom/{{ chatroom_name }}" ws-send _="on htmx:wsAfterSend reset() me">
                     {% csrf_token %}
+                    {{form}}
                     <input type="text" name="message" placeholder="Type a message..."
                            class="w-full bg-transparent text-white placeholder-gray-400 focus:outline-none">
                     <button class="ml-2 p-2 bg-emerald-500 hover:bg-emerald-600 rounded-lg text-white">
