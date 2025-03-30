@@ -13,22 +13,26 @@
             container.scrollTop = container.scrollHeight;
         }, time);
     }
-    scrollToBottom()
+    scrollToBottom();
 </script>
 {% endblock %}
 
 {% block content %}
-<wrapper class="block max-w-2xl mx-auto my-10 px-4">
-    <!-- Chat Window -->
-    <div id="chat_window" class="h-[40rem] flex flex-col bg-gray-900 rounded-2xl shadow-lg overflow-hidden">
-        <!-- Online Status -->
-        <div class="flex justify-center items-center text-emerald-400 bg-gray-800 p-3 sticky top-0 z-10 font-semibold">
-            <span id="online-count" class="pr-1">3</span> Online
+<!-- Chat Container -->
+<div class="w-11/12 mx-auto my-4 px-4">
+    <div id="chat_window" class="h-[38rem] flex flex-col bg-white/30 backdrop-blur-lg rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+
+        <!-- Chat Header -->
+        <div class="flex justify-between items-center text-black bg-gray-200 px-4 py-3">
+            <div class="flex items-center space-x-2">
+                <span class="text-teal-700 text-lg font-bold">Chat Room</span>
+            </div>
+            <span id="online-count" class="text-teal-700 text-lg font-semibold">👨🏻‍💻{{other_user.random_username}}</span>
         </div>
 
         <!-- Chat Messages -->
-        <div id="chat_container" class="overflow-y-auto flex flex-col grow p-4 space-y-4">
-            <ul id="chat_messages" class="flex flex-col space-y-3">
+        <div id='chat_container' class="flex flex-col overflow-y-auto grow p-4 space-y-4">
+            <ul id='chat_messages' class="space-y-3">
                 {% for message in chat_messages %}
                     {% include 'chat_message.html' %}
                 {% endfor %}
@@ -36,64 +40,20 @@
         </div>
 
         <!-- Input Field -->
-        <div class="sticky bottom-0 bg-gray-800 p-3">
-            <div class="flex items-center space-x-2">
-                <form id="chat_message_form" class="flex items-center w-full bg-gray-700 rounded-lg px-4 py-2"
-                      hx-ext="ws" ws-connect="/ws/chatroom/{{ chatroom_name }}" ws-send _="on htmx:wsAfterSend reset() me">
-                    {% csrf_token %}
-                    {{form}}
-                    <input type="text" name="message" placeholder="Type a message..."
-                           class="w-full bg-transparent text-white placeholder-gray-400 focus:outline-none">
-                    <button class="ml-2 p-2 bg-emerald-500 hover:bg-emerald-600 rounded-lg text-white">
-                        Send
-                    </button>
-                </form>
-            </div>
+        <div class="bg-gray-200 px-4 py-3">
+            <form id="chat_message_form" class="flex items-center w-full bg-gray-200 rounded-lg px-3 py-2"
+                  hx-ext="ws" ws-connect="/ws/chatroom/{{ chatroom_name }}" ws-send _="on htmx:wsAfterSend reset() me">
+                {% csrf_token %}
+                <div class="flex-grow">
+                {{form.as_p}}
+                    </div>
+                <button class="ml-2 p-2 bg-teal-400 border-teal-400 hover:border-teal-300
+           hover:bg-opacity-90 hover:scale-105 hover: transition-all duration-300
+            text-xl shadow-lg rounded-lg text-black text-sm">
+                    Send
+                </button>
+            </form>
         </div>
     </div>
-</wrapper>
+</div>
 {% endblock %}
-
-
-
-<!--<script src="https://unpkg.com/hyperscript.org@0.9.14"></script>-->
-<!-- <script src="https://unpkg.com/htmx.org@2.0.4"></script>-->
-<!--<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/ws.js"></script>-->
-
-<!--<script>-->
-
-<!--    function scrollToBottom(time=0) {-->
-<!--        setTimeout(function() {-->
-<!--            const container = document.getElementById('chat_container');-->
-<!--            container.scrollTop = container.scrollHeight;-->
-<!--        }, time);-->
-<!--    }-->
-<!--    scrollToBottom()-->
-
-<!--</script>-->
-
-
-
-
-<!--<wrapper class="block max-w-full mx-auto my-10 px-6">-->
-<!--    <div id="chat_window" class="h-[45rem] flex flex-col bg-white/20 rounded-2xl shadow-2xl relative p-1">-->
-<!--        <div class="flex justify-center text-emerald-400 bg-gray-800 p-2 sticky top-0 z-10">-->
-<!--            <span id="online-count" class="pr-1">3</span>online-->
-<!--        </div>-->
-<!--        <div id='chat_container' class="overflow-y-auto grow">-->
-<!--            <ul id='chat_messages' class="flex flex-col justify-end gap-2 p-4">-->
-<!--                {% for message in chat_messages %}-->
-<!--                {% include 'chat_message.html' %}-->
-<!--                {% endfor %}-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--        <div class="sticky bottom-0 z-10 p-2 bg-gray-800">-->
-<!--            <div class="flex items-center rounded-xl px-2 py-2">-->
-<!--                <form id="chat_message_form" class="w-full" hx-ext="ws" ws-connect="/ws/chatroom/{{ chatroom_name }}" ws-send _="on htmx:wsAfterSend reset() me">-->
-<!--                    {% csrf_token %}-->
-<!--                    {{form}}-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</wrapper>-->

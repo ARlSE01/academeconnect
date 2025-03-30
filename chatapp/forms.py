@@ -7,8 +7,11 @@ class ChatmessageCreateForm(ModelForm):
     class Meta:
         model = GroupMessage
         fields = ['body']
+        labels = {
+            'body': '',  # Removes the default label
+        }
         widgets = {
-            'body' : forms.TextInput(attrs={'placeholder': 'Add message ...', 'class': 'p-4 text-black','autofocus': True }),
+            'body' : forms.TextInput(attrs={'placeholder': 'Type a message...', 'class': 'w-full bg-transparent text-black placeholder-gray-400 px-1 py-2 rounded-lg focus:outline-none','autofocus': True }),
         }
 
 class TagForm(forms.Form):

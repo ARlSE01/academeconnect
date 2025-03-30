@@ -56,27 +56,27 @@
             <div class="w-24 h-24 bg-gray-300 rounded-full overflow-hidden ">
                 <img src=" /{{user.profile_picture}} " alt="User" class="w-full h-full object-cover">
             </div>
-            <h2 class="mt-4  font-semibold text-lg">{{user.username}}</h2>
-            <p class="text-sm">{{user.random_username}}</p>
+            <h2 class="mt-4  font-semibold text-xl">{{user.username}}</h2>
+            <p class="text-lg">{{user.random_username}}</p>
             <nav class="mt-6  space-y-4  w-full text-lg font-poppins">
                 <a href="{% url 'createpost' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
-                    <span class="text-xl">😎</span>
+                    <span class="text-xl">❇️</span>
                     <span>Create Post</span>
                 </a>
                 <a href="{% url 'userposts' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
-                    <span class="text-xl">⭐</span>
+                    <span class="text-xl">📊</span>
                     <span>My Activity</span>
                 </a>
                 <a href="{% url 'viewposts' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
-                    <span class="text-xl">▶</span>
+                    <span class="text-xl">📝</span>
                     <span>All Posts</span>
                 </a>
                 <a href="{% url 'user_chatgroups' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
-                    <span class="text-xl">❤️</span>
+                    <span class="text-xl">🪶</span>
                     <span>Chats</span>
                 </a>
-                <a href="#" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
-                    <span class="text-xl">👤</span>
+                <a href="{% url 'update_user' %}" class="flex items-center space-x-3 p-2 hover:bg-white/20 rounded-lg transition-all hover:scale-105 duration-300 ease-in-out">
+                    <span class="text-xl">🪪</span>
                     <span>Account</span>
                 </a>
             </nav>

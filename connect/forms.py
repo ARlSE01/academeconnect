@@ -3,13 +3,13 @@ from .models import *
 
 class UserForm(forms.Form):
     Email = forms.EmailField(widget=forms.EmailInput(attrs={
-        'class': 'w-full p-3 rounded-lg bg-white/20 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
+        'class': 'w-full p-3 rounded-lg bg-gray-200 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
     }))
     Username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'w-full p-3 rounded-lg bg-white/20 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
+        'class': 'w-full p-3 rounded-lg bg-gray-200 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
     }))
     Password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'w-full p-3 rounded-lg bg-white/20 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
+        'class': 'w-full p-3 rounded-lg bg-gray-200 text-black placeholder-gray-300 shadow-md focus:ring-2 focus:ring-teal-400 outline-none'
     }))
 
 
@@ -17,7 +17,7 @@ class TagForm(forms.Form):
     tags = forms.ModelMultipleChoiceField(
         queryset=Tags.objects.all(),  # Empty initially
         widget=forms.CheckboxSelectMultiple(attrs={
-            'class': 'text-white',  # Style for the checkbox list
+            'class': 'text-gray-800',  # Style for the checkbox list
         }),
         required=False
     )
