@@ -6,6 +6,8 @@ from django.contrib.auth.hashers import make_password
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+
 # Create your views here.
 
 @login_required(login_url='login')
@@ -45,18 +47,18 @@ def display_all_users(request):
     users = User.objects.all()
     return render(request, 'displayallusers.html', {'users':users})
 
-def get_or_create_chatroom(request,username):
-    other_user = User.objects.get(username=username)
+def get_or_create_chatroom(request, username):
+    other_user = get_object_or_404(User, username=username)
     my_private_chatrooms = request.user.chat_groups.filter(is_private=True)
 
-    if my_private_chatrooms.exists():
-        for chatroom in my_private_chatrooms:
-            if other_user in chatroom.members.all():
-                return redirect('chatroom', chatroom.group_name)
+    # Efficiently find existing chatroom
+    chatroom = my_private_chatrooms.filter(members=other_user).first()
 
-    chatroom = ChatGroup.objects.create(is_private=True)
-    chatroom.members.add(other_user, request.user)
-    return redirect('chatroom', chatroom.group_name,{'other_user':other_user})
+    if not chatroom:
+        chatroom = ChatGroup.objects.create(is_private=True)
+        chatroom.members.add(other_user, request.user)
+
+    return redirect(reverse('chatroom', kwargs={'chatroom_name': chatroom.group_name}))
 
 
 def selecttags(request):
