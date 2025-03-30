@@ -31,11 +31,11 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'content']
         widgets = {
             'title': forms.TextInput(attrs={
-                'class': 'w-full p-7 rounded-lg bg-transparent border-2 border-white text-white font-semibold placeholder:text-white shadow-md focus:ring-2 focus:ring-teal-400 outline-none h-12',
+                'class': 'w-full p-7 rounded-lg bg-gray-200 border border-black text-black font-semibold placeholder:text-white focus:ring-2 focus:ring-teal-400 outline-none h-12',
                 'placeholder': 'Enter title'
             }),
             'content': forms.Textarea(attrs={
-                'class': 'w-full p-7 rounded-lg bg-transparent border-2 border-white text-white font-semibold placeholder:text-white shadow-md focus:ring focus:ring-teal-400 outline-none h-30',
+                'class': 'w-full p-7 rounded-lg bg-gray-200 border border-black text-black font-semibold placeholder:text-white focus:ring focus:ring-teal-400 outline-none h-30',
                 'placeholder': 'Enter content'
             }),
         }

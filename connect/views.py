@@ -284,6 +284,9 @@ def comment_dislike(request, comment_id):
     post.author.update_likes_dislikes()
     return JsonResponse({'likes': post.likes, 'dislikes': post.dislikes})
 
+def aboutus(request):
+    return render(request, 'aboutus.html')
+
     # post.dislikes+=1
     # post.save()
     # post.author.update_likes_dislikes()
