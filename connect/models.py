@@ -11,7 +11,7 @@ def generate_random_username():
 
 def user_profile_picture_path():
     # Store profile pictures in 'profile_pics/user_<id>/<filename>'
-    var=random.randint(0,2)
+    var=random.randint(0,9)
     return f'static/uploads/propic_{var}.jpg'
 
 class User(AbstractUser):
