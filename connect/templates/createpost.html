@@ -3,7 +3,7 @@
 {% block content %}
 <div class="w-11/12">
     <div class="p-4 bg-white/30 backdrop-blur-lg rounded-lg shadow-lg mx-5 my-4 text-white ">
-        <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6"><span >Create Post</span></h2>
+        <h2 class="text-3xl font-bold text-center text-white mb-6"><span >CREATE POST</span></h2>
 
         <form method="POST" class="grid grid-cols-6 gap-6">
             {% csrf_token %}
@@ -48,16 +48,16 @@
 
             <!-- Full-Width Section Below -->
             <div class="col-span-6">
-                <p class="text-sm text-gray-200 text-center">
+                <p class="text-lg text-gray-800 text-center">
                     Do not post any
-                    <span class="text-teal-400">personal information</span> or
-                    <span class="text-teal-400">sensitive content</span>.
+                    <span class="text-teal-700">personal information</span> or
+                    <span class="text-teal-700">sensitive content</span>.
                 </p>
             </div>
 
             <div class="col-span-6 flex justify-center">
                 <button type="submit"
-                class="text-center hover:scale-105 duration-300 ease-in-out w-5/6 bg-gradient-to-r from-blue-400 to-teal-500 hover:opacity-80 text-white font-semibold py-2 rounded-lg ">
+                class="text-center hover:scale-105 duration-300 ease-in-out w-5/6 bg-gradient-to-r from-blue-400 to-teal-600 hover:opacity-80 text-white font-semibold py-2 rounded-lg ">
                 Post
             </button>
             </div>

@@ -18,7 +18,7 @@ class TagForm(forms.Form):
     tags = forms.ModelChoiceField(
         queryset=Tags.objects.all(),  # Empty initially
         widget=forms.RadioSelect(attrs={
-            'class': 'text-white',  # Style for the checkbox list
+            'class': 'text-gray-800',  # Style for the checkbox list
         }),
         required=False
     )

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="w-3/4 p-6 mt-2">
-    <h2 class="mx-5 text-3xl font-bold text-white mb-4">My Posts</h2>
+    <h2 class="mx-5 text-3xl font-bold text-white mb-4">MY POSTS</h2>
     <div class="relative mt-4 mx-12 ">
         <input type="text" class="w-11/12 p-2 pl-10 bg-gradient-to-r from-blue-400 to-teal-500  text-white rounded-lg outline-none" placeholder="Search">
         <span class="absolute left-3 top-2 text-white text-lg">🔍</span>
@@ -12,8 +12,8 @@
     {% for post in posts %}
         <div class="flex items-center justify-between mb-2 bg-white/50 text-white p-4 rounded-lg shadow-md mx-6 w-11/12 transition-all hover:scale-105 duration-300 ease-in-out hover:border-gray-700 block ">
         <div>
-            <h3 class="text-xl font-semibold">{{ post.title }}</h3>
-            <p class="text-black-400">{{ post.content }}</p>
+            <h3 class="text-xl text-gray-800 font-semibold">{{ post.title }}</h3>
+            <p class="text-gray-800">{{ post.content }}</p>
         </div>
         <div class="space-x-2">
 
