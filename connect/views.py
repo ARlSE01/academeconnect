@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 from .models import *
 from .forms import UserForm, PostForm, TagForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -129,6 +130,48 @@ def delete_post(request, post_id):
     post.delete()
     return redirect('userposts')
     # return JsonResponse({"message": "Post deleted successfully"}, status=204)
+
+@login_required
+def update_user(request):
+    storage = messages.get_messages(request)
+    storage.used = True
+    user = request.user  # Get the logged-in user
+    tags = user.tags.all()  # Fetch user's current tags
+
+    if request.method == "POST":
+        user_form = UserForm(request.POST)
+        tag_form = TagForm(request.POST)
+
+        if user_form.is_valid() or tag_form.is_valid():  # Ensure both forms are valid
+            # Update username
+            user.username = user_form.cleaned_data['Username']
+
+            # Update password securely
+            new_password = user_form.cleaned_data['Password']
+            confirm_password = request.POST.get('Confirm_Password')
+            if new_password==confirm_password:
+                user.set_password(new_password)
+                user.save()
+                update_session_auth_hash(request, user)  # ✅ Keep user logged in
+
+            else:
+                messages.error(request, "Passwords do not match!")  # ✅ Show error
+                return render(request, 'account.html', {'form': user_form, 'tag_form': tag_form})
+
+                # Update user's tags
+            selected_tags = tag_form.cleaned_data['tags']
+            user.tags.set(selected_tags)  #  Correct ManyToMany relationship update
+
+            messages.success(request, "Account updated successfully!")  # ✅ Success message
+            return redirect('userposts')
+
+    else:
+        # Prepopulate form with existing user data
+        user_form = UserForm(initial={'Email': user.email, 'Username': user.username})
+        tag_form = TagForm(initial={'tags': tags})
+
+    return render(request, 'account.html', {'form': user_form, 'tag_form': tag_form})
+
 
 
 @login_required

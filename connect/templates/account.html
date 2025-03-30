@@ -1,0 +1,56 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div class="w-11/12">
+<div class="flex items-center justify-center h-full bg-transparent p-2 mx-auto rounded-r-lg">
+    <div class="w-full max-w-lg bg-white/50 shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">Update Account</h2>
+
+
+        {% if messages %}
+          <div>
+            {% for message in messages %}
+              <div class="bg-red-400 text-red-400 text-center">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- User Update Form -->
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-4">
+                <label for="id_Username" class="block text-gray-800 font-medium">Username</label>
+                {{ form.Username }}
+            </div>
+
+            <div class="mb-4">
+                <label for="id_Password" class="block text-gray-800 font-medium">New Password</label>
+                <input type="password" name="Password" id="id_Password" class="w-full p-3 border bg-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400 outline-none">
+            </div>
+
+            <div class="mb-4">
+                <label for="id_Password" class="block text-gray-800 font-medium">Confirm Password</label>
+                <input type="password" name="Confirm_Password" id="confirm_Password" class="w-full p-3 border bg-gray-200 rounded-lg focus:ring-2 focus:ring-teal-400 outline-none">
+            </div>
+
+            <h4 class="mt-4 text-lg font-semibold text-gray-800">Select Tags</h4>
+            <div class="mb-4">
+                {{ tag_form.tags }}
+            </div>
+
+            <div class="flex items-center justify-center">
+            <div class="text-center hover:scale-105 duration-300 ease-in-out w-11/12 bg-gradient-to-r from-blue-400 to-teal-500 hover:opacity-80 text-white font-semibold py-2 rounded-lg ">
+            <button type="submit" class="text-center rounded-lg">
+                Update
+            </button>
+            </div>
+                </div>
+        </form>
+
+    </div>
+</div>
+    </div>
+{% endblock %}
