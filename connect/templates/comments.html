@@ -1,20 +1,49 @@
-<li>
-    <p><strong>{{ comment.author.random_username }}</strong>: {{ comment.content }}</p>
+<li class="mt-4 relative">
+    <div class="bg-gradient-to-r from-[#EEEBEB] to-[#06B8C5] backdrop-blur-lg p-4 rounded-lg shadow-md w-[90%] ml-{{ comment.depth|add:4 }}% group hover:border-blue-300 transition-all duration-300 ease-in-out">
+        <!-- Comment Author -->
+        <div class="flex items-center justify-start">
 
-    <!-- Like & Dislike buttons for comment -->
-    <button class="comment-like-btn" data-post="{{ comment.id }}">👍 Like (<span id="likes-count-{{ comment.id }}">{{ comment.likes }}</span>)</button>
-    <button class="comment-dislike-btn" data-post="{{ comment.id }}">👎 Dislike (<span id="dislikes-count-{{ comment.id }}">{{ comment.dislikes }}</span>)</button>
+        <img class="h-10 w-10 object-cover mr-1" src="/{{comment.author.profile_picture}}">
+            <div class="flex-col items-center">
+        <p class="font-semibold text-sm text-black">{{ comment.author.random_username }}</p>
+        <p class=" text-gray-700 text-lg">{{ comment.content }}</p>
+            </div>
+            </div>
 
-    <!-- Reply Form -->
-    <form method="POST" action="{% url 'add_comment' comment.post.id %}">
-        {% csrf_token %}
-        <input type="hidden" name="parent_id" value="{{ comment.id }}">
-        <textarea name="content" placeholder="Reply to this comment"></textarea>
-        <button type="submit">Reply</button>
-    </form>
+        <!-- Like & Dislike Buttons -->
+        <div class="flex space-x-4 mt-2">
+            <button class="comment-like-btn text-green-500 flex items-center" data-post="{{ comment.id }}">
+                <img src="/static/uploads/like.png" class="h-5 w-5 mx-1">
+                (<span id="likes-count-{{ comment.id }}">{{ comment.likes }}</span>)
+            </button>
+            <button class="comment-dislike-btn text-red-500 flex items-center" data-post="{{ comment.id }}">
+                <img src="/static/uploads/dislike.png" class="h-5 w-5 mx-1">
+                (<span id="dislikes-count-{{ comment.id }}">{{ comment.dislikes }}</span>)
+            </button>
+        </div>
 
-    <!-- Render Replies Recursively -->
-    <ul>
+        <!-- Reply Button (Hidden by Default, Shows Only When Parent is Hovered) -->
+        <div class="hidden group-hover:block transition-opacity duration-300 mt-2">
+    <button class="show-reply-btn text-gray-700 text-sm underline">Reply</button>
+</div>
+
+<!-- Reply Form (Hidden Initially with Smooth Transition) -->
+<form method="POST" action="{% url 'add_comment' comment.post.id %}"
+      class="reply-form mt-2 overflow-hidden max-h-0 opacity-0 transition-all duration-500 ease-in-out">
+    {% csrf_token %}
+    <input type="hidden" name="parent_id" value="{{ comment.id }}">
+    <textarea name="content" rows="1"
+              class="w-full p-2 bg-gra
+
+               comment..."></textarea>
+    <button type="submit" class="mt-2 px-4 py-1 bg-blue-500 text-white rounded-lg">
+        Reply
+    </button>
+</form>
+    </div>
+
+    <!-- Recursive Rendering for Replies -->
+    <ul class="ml-{{ comment.depth|add:6 }}">
         {% for reply in comments %}
             {% if reply.parent == comment %}
                 {% include "comments.html" with comment=reply comments=comments %}

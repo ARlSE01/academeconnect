@@ -1,0 +1,59 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block forjs %}
+<script src="https://unpkg.com/hyperscript.org@0.9.14"></script>
+<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/ws.js"></script>
+
+<script>
+    function scrollToBottom(time=0) {
+        setTimeout(function() {
+            const container = document.getElementById('chat_container');
+            container.scrollTop = container.scrollHeight;
+        }, time);
+    }
+    scrollToBottom();
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Chat Container -->
+<div class="w-11/12 mx-auto my-4 px-4">
+    <div id="chat_window" class="h-[38rem] flex flex-col bg-white/30 backdrop-blur-lg rounded-xl shadow-lg border border-gray-700 overflow-hidden">
+
+        <!-- Chat Header -->
+        <div class="flex justify-between items-center text-black bg-gray-200 px-4 py-3">
+            <div class="flex items-center space-x-2">
+                <span class="text-teal-700 text-lg font-bold">Chat Room</span>
+            </div>
+            <span id="online-count" class="text-teal-700 text-lg font-semibold">👨🏻‍💻{{other_user.random_username}}</span>
+        </div>
+
+        <!-- Chat Messages -->
+        <div id='chat_container' class="flex flex-col overflow-y-auto grow p-4 space-y-4">
+            <ul id='chat_messages' class="space-y-3">
+                {% for message in chat_messages %}
+                    {% include 'chat_message.html' %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Input Field -->
+        <div class="bg-gray-200 px-4 py-3">
+            <form id="chat_message_form" class="flex items-center w-full bg-gray-200 rounded-lg px-3 py-2"
+                  hx-ext="ws" ws-connect="/ws/chatroom/{{ chatroom_name }}" ws-send _="on htmx:wsAfterSend reset() me">
+                {% csrf_token %}
+                <div class="flex-grow">
+                {{form.as_p}}
+                    </div>
+                <button class="ml-2 p-2 bg-teal-400 border-teal-400 hover:border-teal-300
+           hover:bg-opacity-90 hover:scale-105 hover: transition-all duration-300
+            text-xl shadow-lg rounded-lg text-black text-sm">
+                    Send
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

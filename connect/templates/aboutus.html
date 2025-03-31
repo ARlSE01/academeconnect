@@ -1,0 +1,94 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    {% tailwind_css %}
+</head>
+<body class="bg-[url('/static/uploads/abtus.jpg')] bg-no-repeat h-screen bg-cover font-poppins">
+
+<!-- Navbar -->
+<nav class="bg-gray-200 mt-5 p-2 shadow-md ">
+    <div class="max-w-full mx-12 flex justify-between items-start">
+
+        <!-- Left Section (Links) -->
+        <div class="flex space-x-12 hover:scale-105 transition-all duration-300 ease-in-out ml-7 ">
+            <a href="#" class="font-poppins text-gray-800 cursor-pointer text-3xl font-semibold hover:text-blue-500 hover:scale-110 duration-500 ">AcademeConnect</a>
+            <a href="{% url 'homepage' %}" class="font-poppins text-gray-500 cursor-pointer text-3xl hover:text-blue-500 hover:scale-110 duration-500 ">Home</a>
+            <a href="{% url 'viewposts' %}" class="font-poppins text-gray-500 cursor-pointer hover:scale-110 hover:text-blue-500 transition-all duration-500 text-3xl">Posts</a>
+            <a href="{% url 'aboutus' %}" class="font-poppins text-gray-500 cursor-pointer hover:scale-110 hover:text-blue-500 transition-all duration-500 text-3xl">About Us</a>
+        </div>
+
+        <!-- Right Section (Buttons) -->
+        <div class="flex space-x-10 hover:scale-105 transition-all duration-300 ease-in-out   ">
+            <form action="registration" method="get">
+                {% csrf_token %}
+                <button type="submit" class="bg-gradient-to-r from-blue-400 to-teal-600 text-white font-semibold px-8 py-2 rounded-lg
+               hover:opacity-90 hover:scale-110 transition-all duration-500 ease-in-out hover:text-gray-100">
+                    Sign Up
+                </button>
+            </form>
+
+            <form action="login/" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-gradient-to-r from-blue-400 to-teal-600 text-white font-semibold px-8 py-2 rounded-lg  hover:opacity-90 hover:scale-110 transition-all duration-500 ease-in-out hover:text-gray-100">
+                    Sign In
+                </button>
+            </form>
+        </div>
+
+    </div>
+</nav>
+<div class="mx-auto p-10 text-white">
+    <h1 class="text-4xl font-bold text-center mb-8 text-white">Welcome to Academe Connect!</h1>
+
+    <p class="text-2xl text-gray-200 text-center mb-8">
+        At <span class="font-semibold text-teal-800">Academe Connect</span>, we believe that knowledge should be accessible, collaborative, and free of judgment.
+        Our platform provides a <span class="text-teal-800 font-semibold">safe and anonymous space</span> for learners, developers, and tech enthusiasts to
+        connect, share knowledge, and grow together.
+    </p>
+
+    <h2 class="text-2xl font-bold text-white mt-8">Why Choose Academe Connect?</h2>
+
+    <ul class="list-disc list-inside space-y-6 text-gray-300 mt-5 text-xl">
+        <li>
+            <span class="font-semibold text-teal-800">Stay Anonymous, Stay Curious:</span>
+            We keep your identity hidden, allowing you to explore and ask tech-related questions freely.
+        </li>
+        <li>
+            <span class="font-semibold text-teal-800">Collaborative Problem Solving:</span>
+            Post queries on tech stacks like JavaScript, Python, AI, and DevOps, and engage in meaningful discussions.
+        </li>
+        <li>
+            <span class="font-semibold text-teal-800">Reactions and Feedback:</span>
+            Upvote helpful responses, downvote irrelevant ones, and contribute to making knowledge accessible.
+        </li>
+        <li>
+            <span class="font-semibold text-teal-800">Real-Time Anonymous Chat:</span>
+            Connect with like-minded peers based on shared skills and interests.
+        </li>
+    </ul>
+
+    <h2 class="text-2xl font-bold text-white mt-8">Our Mission</h2>
+
+    <p class="text-2xl text-gray-200 mt-5">
+        Our mission is to create an <span class="font-semibold text-teal-800">inclusive learning environment</span> where everyone,
+        from beginners to experts, can grow together. Whether you're tackling coding challenges, seeking career advice,
+        or exploring the latest in tech, <span class="font-semibold text-teal-800">Academe Connect</span> is your go-to space.
+    </p>
+
+    <h2 class="text-2xl font-bold text-white mt-8">Join Us Today!</h2>
+
+    <p class="text-2xl text-gray-200 mt-5">
+        Be part of a <span class="text-teal-800 font-semibold">thriving tech community</span>. Post queries, share insights, and connect
+        with others who share your passion for technology — all while staying anonymous.
+    </p>
+
+</div>
+
+</body>
+</html>
