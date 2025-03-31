@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-h0t^kn46xy#!hi^ad&iyjc9@gn1co7k0vr^54^sh*#fyi^v&f8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok.io','d3fd-103-218-237-74.ngrok-free.app']
+ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -67,7 +67,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
-    "django_htmx.middleware.HtmxMiddleware",
+    'django_htmx.middleware.HtmxMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 
@@ -150,7 +151,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'connect', 'static'),
+    os.path.join(BASE_DIR, 'chatapp', 'static'),
+    os.path.join(BASE_DIR, 'theme', 'static'),
+]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
