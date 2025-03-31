@@ -807,24 +807,16 @@ select {
   grid-column: span 2 / span 2;
 }
 
-.col-span-3 {
-  grid-column: span 3 / span 3;
-}
-
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
 
-.col-span-4 {
-  grid-column: span 4 / span 4;
+.col-span-5 {
+  grid-column: span 5 / span 5;
 }
 
 .col-span-6 {
   grid-column: span 6 / span 6;
-}
-
-.col-span-5 {
-  grid-column: span 5 / span 5;
 }
 
 .mx-1 {
@@ -865,6 +857,11 @@ select {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .mb-2 {
@@ -945,6 +942,10 @@ select {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .block {
@@ -1028,40 +1029,16 @@ select {
   min-height: 100vh;
 }
 
-.min-h-56 {
-  min-height: 14rem;
-}
-
 .min-h-64 {
   min-height: 16rem;
 }
 
-.min-h-full {
-  min-height: 100%;
+.min-h-52 {
+  min-height: 13rem;
 }
 
-.min-h-80 {
-  min-height: 20rem;
-}
-
-.min-h-8 {
-  min-height: 2rem;
-}
-
-.min-h-96 {
-  min-height: 24rem;
-}
-
-.min-h-\[80vw\] {
-  min-height: 80vw;
-}
-
-.min-h-\[20vw\] {
-  min-height: 20vw;
-}
-
-.min-h-\[18vw\] {
-  min-height: 18vw;
+.min-h-56 {
+  min-height: 14rem;
 }
 
 .min-h-\[19vw\] {
@@ -1160,10 +1137,6 @@ select {
   max-width: 32rem;
 }
 
-.max-w-3xl {
-  max-width: 48rem;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1196,16 +1169,8 @@ select {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.grid-cols-7 {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1312,18 +1277,6 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}
-
-.space-y-1 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
-}
-
-.space-y-5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
 
 .overflow-hidden {
@@ -1520,10 +1473,6 @@ select {
   background-color: rgb(255 255 255 / 0.5);
 }
 
-.bg-white\/40 {
-  background-color: rgb(255 255 255 / 0.4);
-}
-
 .bg-\[url\(\'\/static\/uploads\/classroom\.jpg\'\)\] {
   background-image: url('/static/uploads/classroom.jpg');
 }
@@ -1540,16 +1489,16 @@ select {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
-.bg-\[url\(\'\/static\/uploads\/every\.jpg\'\)\] {
-  background-image: url('/static/uploads/every.jpg');
-}
-
-.bg-\[url\(\'\/static\/uploads\/everybg\.jpg\'\)\] {
-  background-image: url('/static/uploads/everybg.jpg');
-}
-
 .bg-\[url\(\'\/static\/uploads\/abtus\.jpg\'\)\] {
   background-image: url('/static/uploads/abtus.jpg');
+}
+
+.bg-\[url\(\'\/static\/uploads\/figmabg\.jpg\'\)\] {
+  background-image: url('/static/uploads/figmabg.jpg');
+}
+
+.bg-\[url\(\'\/static\/uploads\/abtus_flipped\.jpg\'\)\] {
+  background-image: url('/static/uploads/abtus_flipped.jpg');
 }
 
 .from-\[\#36D2DD\] {
@@ -1639,10 +1588,6 @@ select {
 
 .p-6 {
   padding: 1.5rem;
-}
-
-.p-8 {
-  padding: 2rem;
 }
 
 .px-10 {
@@ -1857,9 +1802,9 @@ select {
   color: rgb(229 231 235 / var(--tw-text-opacity, 1));
 }
 
-.text-teal-600 {
+.text-teal-800 {
   --tw-text-opacity: 1;
-  color: rgb(13 148 136 / var(--tw-text-opacity, 1));
+  color: rgb(17 94 89 / var(--tw-text-opacity, 1));
 }
 
 .text-teal-500 {
@@ -1867,22 +1812,9 @@ select {
   color: rgb(20 184 166 / var(--tw-text-opacity, 1));
 }
 
-.text-teal-300 {
+.text-teal-200 {
   --tw-text-opacity: 1;
-  color: rgb(94 234 212 / var(--tw-text-opacity, 1));
-}
-
-.text-white\/30 {
-  color: rgb(255 255 255 / 0.3);
-}
-
-.text-white\/90 {
-  color: rgb(255 255 255 / 0.9);
-}
-
-.text-teal-800 {
-  --tw-text-opacity: 1;
-  color: rgb(17 94 89 / var(--tw-text-opacity, 1));
+  color: rgb(153 246 228 / var(--tw-text-opacity, 1));
 }
 
 .underline {
