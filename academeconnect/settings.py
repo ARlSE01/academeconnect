@@ -33,7 +33,7 @@ INTERNAL_IPS = [
 ]
 TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = r"/Users/ghosh/.nvm/versions/node/v22.14.0/bin/npm"
-CSRF_TRUSTED_ORIGINS = ['https://*.mydomain.com','https://*.127.0.0.1','https://d3fd-103-218-237-74.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['*']
 
 
 # Application definition
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_htmx',
-    'django_browser_reload',
+    # 'django_browser_reload',
     'chatapp',
     'channels',
 ]
@@ -66,7 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    # "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django_htmx.middleware.HtmxMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
